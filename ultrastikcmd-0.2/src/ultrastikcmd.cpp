@@ -3,7 +3,7 @@
 // Author      : Aleph (aleph.at.al3ph.org)
 // Version 0.2 : Andy Silverman (andrewsi.at.outlook.com)
 // Email	   : andrewsi.at.outlook.com
-// Version     : 0.2.0
+// Version     : 0.2.1
 // Copyright   : Silicon Based Life (2009)
 // Description : UltraStik Controller Setup for Linux
 //============================================================================
@@ -384,7 +384,7 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	HIDInterfaceMatcher matcher = { VENDOR_ID_ULTIMARC, PRODUCT_ID_ULTRASTIK1+arguments.controller-1, NULL, NULL, 0 };
+	HIDInterfaceMatcher matcher = { VENDOR_ID_ULTIMARC, (unsigned short)(PRODUCT_ID_ULTRASTIK1+arguments.controller-1), NULL, NULL, 0 };
 
 	hid_set_debug(HID_DEBUG_ERRORS);
 //	hid_set_debug(HID_DEBUG_ALL); // Uncomment this to make logging extra verbose.

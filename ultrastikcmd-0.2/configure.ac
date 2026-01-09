@@ -1,4 +1,4 @@
-AC_INIT([ultrastikcmd], [0.2], [andrewsi@outlook.com])
+AC_INIT([ultrastikcmd], [0.2.1], [andrewsi@outlook.com])
 
 AC_COPYRIGHT([Please see the ./COPYING file for license information.])
 
