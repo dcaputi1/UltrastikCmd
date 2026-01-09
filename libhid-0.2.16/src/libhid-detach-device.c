@@ -52,7 +52,7 @@ int main(int argc, char** argp)
 
   ret = hid_force_open(hid, 0, &matcher, 3);
   if (ret != HID_RET_SUCCESS) {
-    fprintf(stderr, "hid_force_open failed with return code %d.\n", ret);
+    fprintf(stderr, "[STEP 3 - DETACH] hid_force_open failed with return code %d.\n", ret);
     return 1;
   }
 

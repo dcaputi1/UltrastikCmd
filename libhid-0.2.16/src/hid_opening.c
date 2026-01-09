@@ -15,6 +15,9 @@ enum USBMatchFlags {
   USB_MATCH_ALL = USB_MATCH_VENDOR | USB_MATCH_PRODUCT | USB_MATCH_CUSTOM
 };
 
+/* Limit formatting to keep log ID safely within hidif->id buffer (32 bytes). */
+static const int HID_ID_COMPONENT_MAX = 12;
+
 static unsigned int hid_compare_usb_device(struct usb_dev_handle const* dev_h,
     HIDInterfaceMatcher const* const match)
 {
@@ -76,8 +79,10 @@ static hid_return hid_find_usb_device(HIDInterface* const hidif,
     TRACE("enumerating USB devices on bus %s...", usbbus->dirname);
     for (usbdev = usbbus->devices; usbdev; usbdev=usbdev->next) {
 
-      snprintf(hidif->id, sizeof(hidif->id), "%s/%s[%d]",
-          usbbus->dirname, usbdev->filename, hidif->interface);
+        snprintf(hidif->id, sizeof(hidif->id), "%.*s/%.*s[%d]",
+          HID_ID_COMPONENT_MAX, usbbus->dirname,
+          HID_ID_COMPONENT_MAX, usbdev->filename,
+          hidif->interface);
 
       TRACE("inspecting USB device %s...", hidif->id);
       usb_dev_handle *usbdev_h = usb_open(usbdev);

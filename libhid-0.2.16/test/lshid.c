@@ -33,7 +33,7 @@ bool device_iterator (struct usb_dev_handle const* usbdev, void* custom, unsigne
 {
   bool ret = false;
   int i;
-  char current_dev_path[10];
+  char current_dev_path[64];
   const struct usb_device *device = usb_device((struct usb_dev_handle *)usbdev);
   
   /* only here to prevent the unused warning */
@@ -43,8 +43,8 @@ bool device_iterator (struct usb_dev_handle const* usbdev, void* custom, unsigne
   if(len==0){;}
  
   /* Obtain the device's full path */
-  //sprintf(current_dev_path, "%s/%s", usbdev->bus->dirname, usbdev->device->filename);
-  sprintf(current_dev_path, "%s/%s", device->bus->dirname, device->filename);
+  snprintf(current_dev_path, sizeof(current_dev_path), "%.*s/%.*s",
+      30, device->bus->dirname, 30, device->filename);
 
   /* Check if we already saw this dev */
   for ( i = 0 ; ( hid_id[i] != NULL ) ; i++ )
@@ -55,10 +55,13 @@ bool device_iterator (struct usb_dev_handle const* usbdev, void* custom, unsigne
   
   /* Append device to the list if needed */
   if (hid_id[i] == NULL)
-	{
-	  hid_id[i] = (char *) malloc (strlen(device->filename) + strlen(device->bus->dirname) );
-	  sprintf(hid_id[i], "%s/%s", device->bus->dirname, device->filename);
-	}
+  {
+    size_t need = strlen(device->filename) + strlen(device->bus->dirname) + 2;
+    hid_id[i] = (char *) malloc(need);
+    if (hid_id[i]) {
+      snprintf(hid_id[i], need, "%s/%s", device->bus->dirname, device->filename);
+    }
+  }
   else /* device already seen */
 	{
 	  return false;

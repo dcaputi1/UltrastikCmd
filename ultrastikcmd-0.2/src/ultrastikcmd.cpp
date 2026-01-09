@@ -406,16 +406,20 @@ int main(int argc, char **argv) {
 	ret = hid_force_open(hid, 0, &matcher, 3);
 	if (ret != HID_RET_SUCCESS) {
 		//Try to find a new-flavor Ultrastik using the alternate PID instead.
+		// fprintf(stderr, "[ATTEMPT 1 - OLD PID] hid_force_open(interface 0) failed with return code %d, trying new PID...\n", ret);
 		matcher.product_id = PRODUCT_ID_ULTRASTIK_NEW+arguments.controller-1;
 		ret = hid_force_open(hid, 2, &matcher, 3);  // New sticks must use HID interface 2, not 0.
 		if (ret != HID_RET_SUCCESS) {
+			// fprintf(stderr, "[ATTEMPT 2 - NEW PID] hid_force_open(interface 2) failed with return code %d\n", ret);
 			fprintf(stderr, "hid_force_open failed with return code %d\n", ret);
 			return 1;
 		} else {
+			fprintf(stderr, "UltraStik device found and opened successfully (new PID)\n");
 			stikfound = NEW;
 		}
 
 	} else {
+		fprintf(stderr, "UltraStik device found and opened successfully (old PID)\n");
 		stikfound = OLD;
 	}
 
