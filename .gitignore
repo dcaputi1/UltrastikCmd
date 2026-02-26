@@ -27,6 +27,63 @@
 *.out
 *.app
 
+# Project-specific build artifacts
+build.log
+
+# Autotools / Autoconf caches and generated files (do not track)
+ultrastikcmd-0.2/autom4te.cache/
+ultrastikcmd-0.2/config.log
+ultrastikcmd-0.2/config.status
+ultrastikcmd-0.2/configure
+ultrastikcmd-0.2/libtool
+ultrastikcmd-0.2/**/.deps/
+ultrastikcmd-0.2/**/.libs/
+ultrastikcmd-0.2/**/Makefile
+ultrastikcmd-0.2/**/Makefile.in
+ultrastikcmd-0.2/**/*.Po
+ultrastikcmd-0.2/**/*.Plo
+
+libhid-0.2.16/autom4te.cache/
+libhid-0.2.16/config.log
+libhid-0.2.16/config.status
+libhid-0.2.16/libtool
+libhid-0.2.16/**/.deps/
+libhid-0.2.16/**/.libs/
+libhid-0.2.16/**/Makefile
+libhid-0.2.16/**/Makefile.in
+libhid-0.2.16/**/*.Po
+libhid-0.2.16/**/*.Plo
+
+libusb-1.0.19/autom4te.cache/
+libusb-1.0.19/config.log
+libusb-1.0.19/config.status
+libusb-1.0.19/libtool
+libusb-1.0.19/**/.deps/
+libusb-1.0.19/**/.libs/
+libusb-1.0.19/**/Makefile
+libusb-1.0.19/**/Makefile.in
+libusb-1.0.19/**/*.Po
+libusb-1.0.19/**/*.Plo
+
+libusb-compat-0.1.5/autom4te.cache/
+libusb-compat-0.1.5/config.log
+libusb-compat-0.1.5/config.status
+libusb-compat-0.1.5/libtool
+libusb-compat-0.1.5/config.h
+libusb-compat-0.1.5/**/.deps/
+libusb-compat-0.1.5/**/.libs/
+libusb-compat-0.1.5/**/Makefile
+libusb-compat-0.1.5/**/Makefile.in
+libusb-compat-0.1.5/**/*.Po
+libusb-compat-0.1.5/**/*.Plo
+
+# Per-target dependency files and binaries
+ultrastikcmd-0.2/src/.deps/
+ultrastikcmd-0.2/src/ultrastikcmd
+libhid-0.2.16/src/libhid-detach-device
+libhid-0.2.16/test/lshid
+libhid-0.2.16/test/test_libhid
+
 
 #################
 ## Eclipse
